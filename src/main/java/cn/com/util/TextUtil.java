@@ -20,13 +20,32 @@ public class TextUtil {
 			BufferedReader br=new BufferedReader(fr);
 	        String line="";
 	        String[] arrs=null;
+	        line = br.readLine();
 	        while ((line=br.readLine())!=null) {
-	            arrs=line.split(",");
+	            arrs=line.split(";");
 	            Record record = new Record();
 	            record.setAge(Integer.parseInt(arrs[0]));
 	            record.setJob(arrs[1]);
 	            record.setMarital(arrs[2]);
-	            
+	            record.setEducation(arrs[3]);
+	            record.setDefaultCredit(arrs[4]);
+	            record.setHousing(arrs[5]);
+	            record.setLoan(arrs[6]);
+	            record.setContact(arrs[7]);
+	            record.setMonth(arrs[8]);
+	            record.setDayOfWeek(arrs[9]);
+	            record.setDuration(Double.parseDouble(arrs[10]));
+	            record.setCampaign(Double.parseDouble(arrs[11]));
+	            record.setPdays(Double.parseDouble(arrs[12]));
+	            record.setPrevious(Double.parseDouble(arrs[13]));
+	            record.setPoutcome(arrs[14]);
+	            record.setEmpVarRate(Double.parseDouble(arrs[15]));
+	            record.setConsPriceIdx(Double.parseDouble(arrs[16]));
+	            record.setConsConfIdx(Double.parseDouble(arrs[17]));
+	            record.setEuribor3m(Double.parseDouble(arrs[18]));
+	            record.setNrEmployed(Double.parseDouble(arrs[19]));
+	            record.setLabel(arrs[20]);
+	            lists.add(record);
 	        }
 	        br.close();
 	        fr.close();
