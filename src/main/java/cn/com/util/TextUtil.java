@@ -13,7 +13,7 @@ public class TextUtil {
 	public static List<Record> getAllInformation(String fileName){
 		
 		List<Record> lists = new ArrayList<Record>();
-		
+		int count = 0;
 		FileReader fr;
 		try {
 			fr = new FileReader(fileName);
@@ -24,6 +24,12 @@ public class TextUtil {
 	        while ((line=br.readLine())!=null) {
 	            arrs=line.split(";");
 	            Record record = new Record();
+	            for(String values : arrs){
+	            	if(values.equals("unknown")){
+	            		record.setDirty(true);
+	            		count++;
+	            	}
+	            }
 	            record.setAge(Integer.parseInt(arrs[0]));
 	            record.setJob(arrs[1]);
 	            record.setMarital(arrs[2]);
@@ -47,6 +53,7 @@ public class TextUtil {
 	            record.setLabel(arrs[20]);
 	            lists.add(record);
 	        }
+	        System.out.println("dirty record number is :" + count);
 	        br.close();
 	        fr.close();
 		} catch (Exception e) {

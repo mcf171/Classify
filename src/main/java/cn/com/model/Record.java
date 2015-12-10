@@ -23,6 +23,16 @@ public class Record {
 	private double euribor3m;
 	private double nrEmployed;
 	private String label;
+	
+	private boolean isDirty;
+	
+	
+	public boolean isDirty() {
+		return isDirty;
+	}
+	public void setDirty(boolean isDirty) {
+		this.isDirty = isDirty;
+	}
 	public int getAge() {
 		return age;
 	}
