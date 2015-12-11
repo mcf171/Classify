@@ -1,4 +1,4 @@
-package cn.com.util;
+/*package cn.com.util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -113,3 +113,4 @@ public class DataUtil {
 		return transforLists;
 	}
 }
+*/

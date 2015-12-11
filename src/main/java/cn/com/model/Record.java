@@ -159,5 +159,78 @@ public class Record {
 		this.label = label;
 	}
 	
+	public String getAttrVaule(String attrName) {
+		String value = null;
+		switch (attrName) {
+		case "age" :
+			value = age + "";
+			break;
+		case "job" :
+			value =  job;
+			break;
+		case "marital" :
+			value =  marital;
+			break;
+		case "education" :
+			value =  education;
+			break;
+		case "defaultCredit" :
+			value =  defaultCredit;
+			break;	
+		case "housing" :
+			value =  housing;
+			break;
+		case "loan" :
+			value =  loan;
+			break;
+		case "contact" :
+			value =  contact;
+			break;
+		case "month" :
+			value =  month;
+			break;
+		case "dayOfWeek" :
+			value =  dayOfWeek;
+			break;
+		case "duration" :
+			value =  duration + "";
+			break;
+		case "campaign" :
+			value =  campaign + "";
+			break;
+		case "pdays" :
+			value =  pdays + "";
+			break;
+		case "previous" :
+			value =  previous + "";
+			break;
+		case "poutcome" :
+			value =  poutcome;
+			break;
+		case "empVarRate" :
+			value =  empVarRate + "";
+			break;
+		case "consPriceIdx" :
+			value =  consPriceIdx + "";
+			break;
+		case "consConfIdx" :
+			value =  consConfIdx + "";
+			break;
+		case "euribor3m" :
+			value =  euribor3m + "";
+			break;
+		case "nrEmployed" :
+			value =  nrEmployed + "";
+			break;
+		case "label" :
+			value =  label;
+			break;
+		case "isDirty" :
+			value =  isDirty + "";
+			break;
+		default:
+		}
+		return value;
+	}
 
 }

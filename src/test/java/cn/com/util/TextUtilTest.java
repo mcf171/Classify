@@ -13,5 +13,4 @@ public class TextUtilTest extends TestCase {
 		System.out.println(lists.size());
 		this.assertNotNull(lists);
 	}
-
 }
