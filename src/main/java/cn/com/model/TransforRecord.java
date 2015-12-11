@@ -52,6 +52,7 @@ public class TransforRecord {
 			this.job = 0.05;
 		else if(job.equals("unknown")){
 			this.isDirty = true;
+			this.job = 0;
 		}else {
 			this.isDirty = true;
 		}
@@ -67,6 +68,7 @@ public class TransforRecord {
 			this.marital = 0.3;
 		else if(marital.equals("unknown")){
 			this.isDirty = true;
+			this.marital = 0;
 		}else{
 			this.isDirty = true;
 		}
@@ -90,6 +92,7 @@ public class TransforRecord {
 			this.education = 0.7;
 		else if(education.equals("unknown")){
 			this.isDirty = true;
+			this.education = 0;
 		}else {
 			this.isDirty = true;
 		}
@@ -103,6 +106,7 @@ public class TransforRecord {
 			this.defaultCredit = 1;
 		else if(defaultCredit.equals("unknown")){
 			this.isDirty = true;
+			this.defaultCredit = 0;
 		}else {
 			this.isDirty = true;
 		}
@@ -117,6 +121,7 @@ public class TransforRecord {
 			this.housing = 1;
 		else if(housing.equals("unknown")){
 			this.isDirty = true;
+			this.housing = 0;
 		}else{
 			this.isDirty = true;
 		}
@@ -130,6 +135,7 @@ public class TransforRecord {
 			this.loan = 1;
 		else if(loan.equals("unknown")){
 			this.isDirty = true;
+			this.loan = 0;
 		}else{
 			this.isDirty = true;
 		}
@@ -140,9 +146,10 @@ public class TransforRecord {
 		if(contact.equals("cellular"))
 			this.contact = 0.5;
 		else if(contact.equals("telephone"))
-			this.loan = 1;
+			this.contact = 1;
 		else if(contact.equals("unknown")){
 			this.isDirty = true;
+			this.contact = 0;
 		}else{
 			this.isDirty = true;
 		}

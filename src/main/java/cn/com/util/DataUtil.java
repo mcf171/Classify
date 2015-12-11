@@ -84,7 +84,7 @@ public class DataUtil {
 
 			TransforRecord transforRecord = new TransforRecord();
 			
-			transforRecord.setAge(record.getAge()-ageMin/ageMax - ageMin);
+			transforRecord.setAge((record.getAge()-ageMin)/(ageMax - ageMin));
 			transforRecord.setDirty(record.isDirty());
 			
 			transforRecord.transforJob(record.getJob());
@@ -96,16 +96,16 @@ public class DataUtil {
 			transforRecord.transforContact(record.getContact());
 			transforRecord.transforMonth(record.getMonth());
 			transforRecord.transforDayOfWeek(record.getDayOfWeek());
-			transforRecord.setDuration(record.getDuration()-durationMin/durationMax -durationMin);
-			transforRecord.setCampaign(record.getCampaign()-campaignMin/campaignMax-campaignMin);
-			transforRecord.setPdays(record.getPdays()-pdaysMin/pdaysMax-pdaysMin);
-			transforRecord.setPrevious(record.getPrevious()-previousMin/previousMax-previousMin);
+			transforRecord.setDuration((record.getDuration()-durationMin)/(durationMax -durationMin));
+			transforRecord.setCampaign((record.getCampaign()-campaignMin)/(campaignMax-campaignMin));
+			transforRecord.setPdays((record.getPdays()-pdaysMin)/(pdaysMax-pdaysMin));
+			transforRecord.setPrevious((record.getPrevious()-previousMin)/(previousMax-previousMin));
 			transforRecord.transforPoutcome(record.getPoutcome());
-			transforRecord.setEmpVarRate(record.getEmpVarRate()-empVarRateMin/empVarRateMax-empVarRateMin);
-			transforRecord.setConsPriceIdx(record.getConsPriceIdx()-consPriceIdxMin/consPriceIdxMax-consPriceIdxMin);
-			transforRecord.setConsConfIdx(record.getConsConfIdx()-consConfIdxMax/consConfIdxMax-consConfIdxMin);
-			transforRecord.setEuribor3m(record.getEuribor3m()-euribor3mMin/euribor3mMax-euribor3mMin);
-			transforRecord.setNrEmployed(record.getNrEmployed()-nrEmployedMin/nrEmployedMax-nrEmployedMin);
+			transforRecord.setEmpVarRate((record.getEmpVarRate()-empVarRateMin)/(empVarRateMax-empVarRateMin));
+			transforRecord.setConsPriceIdx((record.getConsPriceIdx()-consPriceIdxMin)/(consPriceIdxMax-consPriceIdxMin));
+			transforRecord.setConsConfIdx((record.getConsConfIdx()-consConfIdxMin)/(consConfIdxMax-consConfIdxMin));
+			transforRecord.setEuribor3m((record.getEuribor3m()-euribor3mMin)/(euribor3mMax-euribor3mMin));
+			transforRecord.setNrEmployed((record.getNrEmployed()-nrEmployedMin)/(nrEmployedMax-nrEmployedMin));
 			
 			transforRecord.setLabel(record.getLabel());
 			if(transforRecord.isDirty()){
