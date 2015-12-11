@@ -28,7 +28,7 @@ public class TransforRecord {
 	
 	public void transforJob(String job){
 		
-		if(job.equals("admin"))
+		if(job.equals("admin."))
 			this.job = 0.1;
 		else if(job.equals("blue-collar"))
 			this.job = 0.2;
@@ -48,9 +48,12 @@ public class TransforRecord {
 			this.job = 0.9;
 		else if(job.equals("technician"))
 			this.job = 1;
-		else if(job.equals("uneployed"))
+		else if(job.equals("unemployed"))
 			this.job = 0.05;
-		else {
+		else if(job.equals("unknown")){
+			this.isDirty = true;
+			this.job = 0;
+		}else {
 			this.isDirty = true;
 		}
 	}
@@ -63,7 +66,10 @@ public class TransforRecord {
 			this.marital = 0.2;
 		else if(marital.equals("single"))
 			this.marital = 0.3;
-		else{
+		else if(marital.equals("unknown")){
+			this.isDirty = true;
+			this.marital = 0;
+		}else{
 			this.isDirty = true;
 		}
 	}
@@ -76,7 +82,7 @@ public class TransforRecord {
 			this.education = 0.2;
 		else if(education.equals("basic.9y"))
 			this.education = 0.3;
-		else if(education.equals("hight.school"))
+		else if(education.equals("high.school"))
 			this.education = 0.4;
 		else if(education.equals("illiterate"))
 			this.education = 0.5;
@@ -84,7 +90,10 @@ public class TransforRecord {
 			this.education = 0.6;
 		else if(education.equals("university.degree"))
 			this.education = 0.7;
-		else {
+		else if(education.equals("unknown")){
+			this.isDirty = true;
+			this.education = 0;
+		}else {
 			this.isDirty = true;
 		}
 	}
@@ -95,7 +104,10 @@ public class TransforRecord {
 			this.defaultCredit = 0.5;
 		else if(defaultCredit.equals("yes"))
 			this.defaultCredit = 1;
-		else{
+		else if(defaultCredit.equals("unknown")){
+			this.isDirty = true;
+			this.defaultCredit = 0;
+		}else {
 			this.isDirty = true;
 		}
 		
@@ -107,7 +119,10 @@ public class TransforRecord {
 			this.housing = 0.5;
 		else if(housing.equals("yes"))
 			this.housing = 1;
-		else{
+		else if(housing.equals("unknown")){
+			this.isDirty = true;
+			this.housing = 0;
+		}else{
 			this.isDirty = true;
 		}
 	}
@@ -118,7 +133,10 @@ public class TransforRecord {
 			this.loan = 0.5;
 		else if(loan.equals("yes"))
 			this.loan = 1;
-		else {
+		else if(loan.equals("unknown")){
+			this.isDirty = true;
+			this.loan = 0;
+		}else{
 			this.isDirty = true;
 		}
 	}
@@ -128,8 +146,11 @@ public class TransforRecord {
 		if(contact.equals("cellular"))
 			this.contact = 0.5;
 		else if(contact.equals("telephone"))
-			this.loan = 1;
-		else {
+			this.contact = 1;
+		else if(contact.equals("unknown")){
+			this.isDirty = true;
+			this.contact = 0;
+		}else{
 			this.isDirty = true;
 		}
 	}

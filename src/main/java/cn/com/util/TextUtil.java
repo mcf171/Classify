@@ -22,6 +22,7 @@ public class TextUtil {
 	        String[] arrs=null;
 	        line = br.readLine();
 	        while ((line=br.readLine())!=null) {
+	        	line = line.replace("\"", "");
 	            arrs=line.split(";");
 	            Record record = new Record();
 	            for(String values : arrs){
@@ -53,14 +54,19 @@ public class TextUtil {
 	            record.setLabel(arrs[20]);
 	            lists.add(record);
 	        }
-	        System.out.println("dirty record number is :" + count);
+	        System.out.println("dirty attribute number is :" + count);
 	        br.close();
 	        fr.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        
+		int counts = 0;
+        for(Record record : lists){
+        	if(record.isDirty())
+        		counts++;
+        }
+        System.out.println("dirty attribute record is :" + counts);
 		
 		return lists;
 	}
