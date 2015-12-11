@@ -23,7 +23,6 @@ public class Record {
 	private double euribor3m;
 	private double nrEmployed;
 	private String label;
-	
 	private boolean isDirty;
 	
 	
