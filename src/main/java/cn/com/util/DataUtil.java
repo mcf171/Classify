@@ -78,7 +78,7 @@ public class DataUtil {
 			
 			
 		}
-		
+		int count = 0;
 		for(Record record : list){
 			
 
@@ -86,6 +86,7 @@ public class DataUtil {
 			
 			transforRecord.setAge(record.getAge()-ageMin/ageMax - ageMin);
 			transforRecord.setDirty(record.isDirty());
+			
 			transforRecord.transforJob(record.getJob());
 			transforRecord.transforMarital(record.getMarital());
 			transforRecord.transforEducation(record.getEducation());
@@ -105,11 +106,14 @@ public class DataUtil {
 			transforRecord.setConsConfIdx(record.getConsConfIdx()-consConfIdxMax/consConfIdxMax-consConfIdxMin);
 			transforRecord.setEuribor3m(record.getEuribor3m()-euribor3mMin/euribor3mMax-euribor3mMin);
 			transforRecord.setNrEmployed(record.getNrEmployed()-nrEmployedMin/nrEmployedMax-nrEmployedMin);
-			transforRecord.setLabel(record.getLabel());
 			
+			transforRecord.setLabel(record.getLabel());
+			if(transforRecord.isDirty()){
+				count++;
+			}
 			transforLists.add(transforRecord);
 		}
-		
+		System.out.println("dirty record count:" + count );
 		return transforLists;
 	}
 }
