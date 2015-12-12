@@ -1,11 +1,16 @@
 package cn.com.service;
 
-import cn.com.util.CalculateLDA;
+import java.util.List;
+
+import cn.com.model.Record;
+import cn.com.util.TextUtil;
 import junit.framework.TestCase;
 
 public class NaiveBayesianTest extends TestCase {
 
 	public void testCalculateTheLabel() {
+		
+		List<Record> trainList = TextUtil.getAllInformation("bank-additional-full.csv");
 		Object[] attributes = new Object[22];
 		
 		attributes[0] = 56.0;
@@ -30,7 +35,7 @@ public class NaiveBayesianTest extends TestCase {
 		attributes[19] = 5191;
 		attributes[20] = "no";
 		attributes[21] = false;
-		String label = NaiveBayesian.calculateTheLabel(attributes);
+		String label = NaiveBayesian.calculateTheLabel(attributes,trainList);
 		System.out.println(label);
 		this.assertEquals(label, "no");
 		
@@ -57,10 +62,11 @@ public class NaiveBayesianTest extends TestCase {
 		attributes[20] = "yes";
 		attributes[21] = true;
 		
-		label = NaiveBayesian.calculateTheLabel(attributes);
+		label = NaiveBayesian.calculateTheLabel(attributes,trainList);
 		System.out.println(label);
 		this.assertEquals(label, "yes");
 		
 	}
 
+	
 }

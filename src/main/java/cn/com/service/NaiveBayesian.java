@@ -1,56 +1,95 @@
 package cn.com.service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import cn.com.model.Record;
-import cn.com.model.TransforRecord;
-import cn.com.util.CalculateLDA;
 import cn.com.util.DataUtil;
-import cn.com.util.TextUtil;
 
 public class NaiveBayesian {
 	
-	public static String calculateTheLabel(Object[] attributes){
+	
+	public static double NaiveBayesianPredicte(List<Record> trainList, List<Record> testList){
 		
-		String label = null;
+		double errsRate = 0;
+		long startMili=System.currentTimeMillis();// 当前时间对应的毫秒数
 		
-		List<Record> recordLists = TextUtil.getAllInformation("bank-additional-full.csv");
-		
-		Object[][] values = new Object[41188][22];
-		for(int i = 0 ; i < 41188; i ++){
+		for(Record record : testList){
+			Object[] values = new Object[22];
 			
-			Record record = recordLists.get(i);
-			values[i][0] = record.getAge();
-			values[i][1] = record.getJob();
-			values[i][2] = record.getMarital();
-			values[i][3] = record.getEducation();
-			values[i][4] = record.getDefaultCredit();
-			values[i][5] = record.getHousing();
-			values[i][6] = record.getLoan();
-			values[i][7] = record.getContact();
-			values[i][8] = record.getMonth();
-			values[i][9] = record.getDayOfWeek();
-			values[i][10] = record.getDuration();
-			values[i][11] = record.getCampaign();
-			values[i][12] = record.getPdays();
-			values[i][13] = record.getPrevious();
-			values[i][14] = record.getPoutcome();
-			values[i][15] = record.getEmpVarRate();
-			values[i][16] = record.getConsPriceIdx();
-			values[i][17] = record.getConsConfIdx();
-			values[i][18] = record.getEuribor3m();
-			values[i][19] = record.getNrEmployed();
-			values[i][20] = record.getLabel();
-			values[i][21] = record.isDirty();
+			values[0] = (double)record.getAge();
+			values[1] = record.getJob();
+			values[2] = record.getMarital();
+			values[3] = record.getEducation();
+			values[4] = record.getDefaultCredit();
+			values[5] = record.getHousing();
+			values[6] = record.getLoan();
+			values[7] = record.getContact();
+			values[8] = record.getMonth();
+			values[9] = record.getDayOfWeek();
+			values[10] = record.getDuration();
+			values[11] = record.getCampaign();
+			values[12] = record.getPdays();
+			values[13] = record.getPrevious();
+			values[14] = record.getPoutcome();
+			values[15] = record.getEmpVarRate();
+			values[16] = record.getConsPriceIdx();
+			values[17] = record.getConsConfIdx();
+			values[18] = record.getEuribor3m();
+			values[19] = record.getNrEmployed();
+			values[20] = record.getLabel();
+			values[21] = record.isDirty();
+		
+			String label = calculateTheLabel(values, trainList);
+			errsRate = label.equals(record.getLabel()) ? errsRate : errsRate + 1;
+			
+			
+			
 		}
+		long endMili=System.currentTimeMillis();
 		
-		List<TransforRecord> transRecords = DataUtil.standardization(recordLists);
+		System.out.println("总耗时为："+(endMili-startMili)+"毫秒");
+		errsRate = errsRate/(testList.size()+trainList.size());
+		System.out.println("the errorRate is : " + errsRate);
+		return errsRate;
+	}
+	
+	public static String calculateTheLabel(Object[] attributes,List<Record> trainList){
 		
-		int[] w = CalculateLDA.getAttribute(transRecords);
+		Object[][] values = null;
+		String label = null;
+		if(null == values){
+			
+			values = new Object[trainList.size()][22];
+			for(int i = 0 ; i < trainList.size(); i ++){
+				
+				Record record = trainList.get(i);
+				values[i][0] = record.getAge();
+				values[i][1] = record.getJob();
+				values[i][2] = record.getMarital();
+				values[i][3] = record.getEducation();
+				values[i][4] = record.getDefaultCredit();
+				values[i][5] = record.getHousing();
+				values[i][6] = record.getLoan();
+				values[i][7] = record.getContact();
+				values[i][8] = record.getMonth();
+				values[i][9] = record.getDayOfWeek();
+				values[i][10] = record.getDuration();
+				values[i][11] = record.getCampaign();
+				values[i][12] = record.getPdays();
+				values[i][13] = record.getPrevious();
+				values[i][14] = record.getPoutcome();
+				values[i][15] = record.getEmpVarRate();
+				values[i][16] = record.getConsPriceIdx();
+				values[i][17] = record.getConsConfIdx();
+				values[i][18] = record.getEuribor3m();
+				values[i][19] = record.getNrEmployed();
+				values[i][20] = record.getLabel();
+				values[i][21] = record.isDirty();
+			}
 		
-		transRecords = null;
+			
+			
+		}
 		double p_age_yes = 0, p_duration_yes = 0, p_campaign_yes = 0, p_pdays_yes = 0, p_empVarRate_yes = 0, p_consPriceIdx_yes = 0, p_consConfIdx_yes = 0;
 		double p_age_no = 0, p_duration_no = 0, p_campaign_no = 0, p_pdays_no = 0, p_empVarRate_no = 0, p_consPriceIdx_no = 0, p_consConfIdx_no = 0;
 		
@@ -76,7 +115,7 @@ public class NaiveBayesian {
 		double number_poutcome_yes = 0, number_marital_yes = 0, number_contact_yes = 0;
 		double number_poutcome_no = 0, number_marital_no = 0, number_contact_no = 0;
 		double numberOfYes = 0, numberOfNo = 0;
-		for(int i = 0 ; i < 41188 ; i ++){
+		for(int i = 0 ; i < trainList.size() ; i ++){
 			
 			if(((String)values[i][20]).equals("yes")){
 				
