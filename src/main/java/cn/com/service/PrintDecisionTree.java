@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import cn.com.model.Record;
 import cn.com.model.TreeNode;
+import cn.com.util.Preprocess;
 import cn.com.util.TextUtil;
 import cn.com.util.TextUtilTest;
 
@@ -26,6 +27,9 @@ public class PrintDecisionTree {
 	        ArrayList<String> attrs = new ArrayList(); // 存放候选属性  
 	        ArrayList<Record> datas = new ArrayList<Record>();  	  
 	        datas = (ArrayList<Record>) TextUtil.getAllInformation("bank-additional-full.csv");
+	        
+			
+			//---------------------------测试打印树-----------------------------------------------------
 			attrs.add("age");
 			attrs.add("job");
 			attrs.add("marital");
@@ -46,10 +50,20 @@ public class PrintDecisionTree {
 			attrs.add("consConfIdx");
 			attrs.add("euribor3m");
 			attrs.add("nrEmployed");
-			attrs.add("label");
-			attrs.add("isDirty");
 	        DecisionTree tree = new DecisionTree();  
 	        TreeNode root = tree.buildTree(datas, attrs); 
-	        tdt.printTree(root, 0);  
+	        tdt.printTree(root, 0); 
+	        //----------------------------------------------------------------------------------------
+	        
+	        
+	        //----------------------------测试离散化和降维---------------------------------------------
+	        /*Preprocess p = new Preprocess();
+
+	        attrs = p.attrChoice(datas);
+
+	        for(int i=0; i<attrs.size(); i++) {
+	        	System.out.println(attrs.get(i));
+	        }*/
+	        //------------------------------------------------------------------------------------
 	    }  
 }

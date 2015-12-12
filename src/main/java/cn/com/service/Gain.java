@@ -69,7 +69,7 @@ public class Gain {
 	 */
 	public Map<String, Integer> valueCountsByLabel(ArrayList<Record> datas) {
 		Map<String, Integer> valueCount = new HashMap<String, Integer>();
-		valueCount = valueCounts(datas,"y");
+		valueCount = valueCounts(datas,"label");
 		return valueCount;
 	}
 	
@@ -168,7 +168,7 @@ public class Gain {
 				attrName = attrSet.get(i);
 			}
 		}
-		return attrName;
+                                                                                                                                                               		return attrName;
 	}
 }
 

@@ -160,7 +160,10 @@ public class Record {
 	}
 	
 	public String getAttrVaule(String attrName) {
-		String value = null;
+		if(attrName == null) {
+			System.out.println("attrName为空");
+		}
+		String value = "";
 		switch (attrName) {
 		case "age" :
 			value = age + "";
@@ -225,10 +228,9 @@ public class Record {
 		case "label" :
 			value =  label;
 			break;
-		case "isDirty" :
-			value =  isDirty + "";
-			break;
 		default:
+			System.out.println("attrName为空");
+			break;
 		}
 		return value;
 	}

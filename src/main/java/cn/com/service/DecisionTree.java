@@ -9,6 +9,22 @@ import cn.com.model.Record;
 import cn.com.model.TreeNode;
 
 public class DecisionTree {
+	
+	public String testRecord(Record record, TreeNode node) {
+		String label = "";
+		String name = node.getName();
+		if(name == "yes" || name == "no") {
+			label = name;
+		}else{
+			ArrayList<TreeNode> childList = node.getChild();
+			for(int i=0; i<childList.size(); i++) {
+				if((record.getAttrVaule(name)).equals(childList.get(i).getRule())){
+					label = testRecord(record, childList.get(i));
+				}
+			}
+		}
+		return label;
+	}
 
 	/**
 	 * 计算给定数据集按类标号属性分类结果
@@ -39,7 +55,7 @@ public class DecisionTree {
 	 */
 	public Map<String, Integer> valueCountsByLabel(ArrayList<Record> datas) {
 		Map<String, Integer> valueCount = new HashMap<String, Integer>();
-		valueCount = valueCounts(datas,"y");
+		valueCount = valueCounts(datas,"label");
 		return valueCount;
 	}
 
