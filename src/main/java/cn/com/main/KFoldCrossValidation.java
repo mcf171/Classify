@@ -27,7 +27,7 @@ public class KFoldCrossValidation {
 			erroRate += NaiveBayesian.NaiveBayesianPredicte(trainList, testList);
 			
 		}
-		
+		erroRate /=10;
 		System.out.println("total errorRate is : " + erroRate);
 	}
 }
