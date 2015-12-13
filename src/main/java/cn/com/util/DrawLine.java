@@ -15,7 +15,7 @@ import cn.com.model.Record;
 public class DrawLine extends JPanel {
 	
 	public static void main(String[] args) {
-		JFrame frame = new JFrame("cons.conf.idx");
+		JFrame frame = new JFrame("pdays");
 		frame.getContentPane().add(new DrawLine());
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(300, 800);
@@ -127,7 +127,7 @@ public class DrawLine extends JPanel {
 			g.drawLine(preX*10 + 10, 800 -preY, i*10 + 10, 800 - age[i]);
 			preX = i;preY = age[i];
 		}*/
-		
+		/*cons.conf.idx
 		Map<Double,Integer> maps = new HashMap<Double, Integer>();
 		for(Record record : list){
 			
@@ -146,6 +146,21 @@ public class DrawLine extends JPanel {
 	            g.drawLine(((Double)me.getKey()).intValue()*2+200, 800,((Double)me.getKey()).intValue()*2+200, 800- (Integer) me.getValue()/10);
 	            //g.drawLine(((Double)me.getKey()).intValue()*10 +50, 800,((Double)me.getKey()).intValue()*10+50, 800-(Integer) me.getValue()/25);  
 	        }
+		}
+		*/
+		int[] age = new int[1000];
+		for(Record record : list){
+			
+			age[(int) record.getPdays()] ++;
+		}
+		for(int i = 0 ; i < 1000 ; i ++){
+			//age[i]/=20;
+		}
+		int preX = 0, preY = 0;
+		for(int i = 0 ; i < 1000 ; i ++){
+			//g.drawLine(preX*10 + 10, 800 -preY, i*10 + 10, 800 - age[i]);
+			g.drawLine(preX*10, 800-preY, i*10,800-age[i]);
+			preX = i;preY = age[i];
 		}
 	}
 }

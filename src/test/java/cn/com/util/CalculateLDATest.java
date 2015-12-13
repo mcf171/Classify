@@ -12,8 +12,8 @@ public class CalculateLDATest extends TestCase {
 		
 		List<Record> lists = TextUtil.getAllInformation("bank-additional-full.csv");
 		List<TransforRecord> transRecords = DataUtil.standardization(lists);
-		double[] w = CalculateLDA.getAttribute(transRecords);
-		for(double values : w) {
+		int[] w = CalculateLDA.getAttribute(transRecords);
+		for(int values : w) {
 		System.out.println(values);
 		}
 	}

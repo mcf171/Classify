@@ -7,7 +7,7 @@ import cn.com.model.TransforRecord;
 
 public class CalculateLDA {
 
-	public static double[] getAttribute(List<TransforRecord> listRecords){
+	public static int[] getAttribute(List<TransforRecord> listRecords){
 		
 		double []u1 = new double[20];
 		double []u2 = new double[20];
@@ -142,7 +142,7 @@ public class CalculateLDA {
 		System.out.println("w is " + m_w.getRowDimension() + " x " + m_w.getColumnDimension());
 		
 		double[][] w = m_w.getArray();
-		double[] indexs = new double[10];
+		int[] indexs = new int[10];
 		for(int i = 0; i< 20 ; i ++)
 			w[i][0] = Math.abs(w[i][0]);
 		int maxIndex = 0;
