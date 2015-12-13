@@ -133,7 +133,7 @@ public class Preprocess {
 		
 		for (int i = 0; i < infoIds.size(); i++) {
 		    String id = infoIds.get(i).getKey();
-		    System.out.println(id);
+//		    System.out.println(id);
 		}
 		
 		Collections.sort(infoIds, new Comparator<Map.Entry<String, Double>>() {   
@@ -147,10 +147,10 @@ public class Preprocess {
 		        }
 		    }
 		});
-        System.out.println();
+//        System.out.println();
 		for (int i = 0; i < 10; i++) {
 		    String id = infoIds.get(i).getKey();
-		    System.out.println(id);
+//		    System.out.println(id);
 		    attrList.add(id);
 		}
 		//--------------------------------------------------------------------------------------
