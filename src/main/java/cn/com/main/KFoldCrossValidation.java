@@ -43,16 +43,40 @@ public class KFoldCrossValidation {
 		        trainList.add(testList.get(s));
 		        testList.remove(s);
 			}
-			//调用贝叶斯方法
-			erroRate += NaiveBayesian.NaiveBayesianPredicte(trainList, testList);
 			
 			errorRateDT += DecisionTree.DecisionTreePredicte((ArrayList)trainList, (ArrayList)testList);
 			
 		}
-		erroRate /=10;
 		errorRateDT /=10;
-		System.out.println("total errorRate is : " + erroRate*100 + "%");
 		System.out.println("total errorRate by DecisioinTree is : " + errorRateDT*100 + "%");
+		for(int i = 0 ; i < 10 ; i ++){
+			
+			System.out.println("iterator time is :" + (i+1));
+			
+			//获取测试集合
+			List<Record> testList = new ArrayList<Record>(allRecord);
+			//获取训练集合
+			List<Record> trainList = new ArrayList<Record>();
+			Collections.copy(testList, allRecord);
+			for(int j = 0 ; j < step; j ++){
+				
+				Random random = new Random();
+		        int s = random.nextInt(testList.size())%(testList.size()-0+1) + 0;
+		        
+		        trainList.add(testList.get(s));
+		        testList.remove(s);
+			}
+			//调用贝叶斯方法
+			erroRate += NaiveBayesian.NaiveBayesianPredicte(trainList, testList);
+			
+			
+		}
+		
+		
+		erroRate /=10;
+		
+		System.out.println("total errorRate is : " + erroRate*100 + "%");
+		
 
 		
 		
