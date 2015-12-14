@@ -8,6 +8,7 @@ public class TreeNode {
 	ArrayList<TreeNode> child;  //子节点集合
 	private ArrayList<Record> datas; //划分到该节点的训练元组
 	private ArrayList<String> candiAttr; //划分到该结点的候选属性
+	private boolean isLeafNode;
 	
 	public TreeNode() {
 		this.name = "";
@@ -15,6 +16,7 @@ public class TreeNode {
 		this.child = new ArrayList<TreeNode>();
 		this.datas = null;
 		this.candiAttr = null;
+		this.isLeafNode = false;
 	}
 
 	public String getName() {
@@ -57,6 +59,12 @@ public class TreeNode {
 		this.candiAttr = candiAttr;
 	}
 
-	
+	public boolean isLeafNode() {
+		return isLeafNode;
+	}
+
+	public void setLeafNode(boolean isLeafNode) {
+		this.isLeafNode = isLeafNode;
+	}
 
 }

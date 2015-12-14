@@ -70,7 +70,6 @@ public class TextUtil {
 	        fr.close();
 	        //System.out.println(divorced + "," + married + "," + single +"," + unknown);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		int counts = 0;
@@ -145,7 +144,6 @@ public class TextUtil {
 	        br.close();
 	        fr.close();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		int counts = 0;

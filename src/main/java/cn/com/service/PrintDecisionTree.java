@@ -17,7 +17,7 @@ public class PrintDecisionTree {
         for (int i = 0; i < children.size(); i++) {  
             for (int j = 0; j <= level; j++)  
                 System.out.print("     ");  
-            System.out.print(children.get(i).getRule() + "--> ");  
+            System.out.print("("+ children.get(i).getRule() + ")" + "--> ");  
             printTree(children.get(i), (level + 1));  
         }  
     }  

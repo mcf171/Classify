@@ -161,14 +161,14 @@ public class Gain {
 		String attrName=null;
 		double gain = 0.0;
 		double tempGain = 0.0;
-		for(int i=0; i<attrSet.size(); i++) {
+		for(int i=attrSet.size()-1; i>=0; i--) {
 			tempGain = expectionOfSamples - getExpectionByAttr(attrSet.get(i));
-			if(tempGain > gain) {
+			if(tempGain >= gain) {
 				gain = tempGain;
 				attrName = attrSet.get(i);
 			}
 		}
-                                                                                                                                                               		return attrName;
+       return attrName;
 	}
 }
 

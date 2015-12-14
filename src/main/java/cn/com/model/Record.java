@@ -158,7 +158,7 @@ public class Record {
 	public void setLabel(String label) {
 		this.label = label;
 	}
-	
+
 	public String getAttrVaule(String attrName) {
 		if(attrName == null) {
 			System.out.println("attrName为空");
