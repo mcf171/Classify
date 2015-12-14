@@ -7,8 +7,38 @@ import java.util.Map;
 
 import cn.com.model.Record;
 import cn.com.model.TreeNode;
+import cn.com.util.Preprocess;
+import cn.com.util.TextUtil;
 
 public class DecisionTree {
+	
+	public static double DecisionTreePredicte(ArrayList<Record> trainList, ArrayList<Record> testList){
+		long startMili=System.currentTimeMillis();// 当前时间对应的毫秒数
+		double errorRate = 0.0;
+		Preprocess preprocess = new Preprocess();
+		preprocess.hierarchy(trainList);
+		ArrayList<String> attrList = preprocess.attrChoice(trainList);
+		DecisionTree dt = new DecisionTree();
+		TreeNode root = new TreeNode();
+		root = dt.buildTree(trainList, attrList);
+		preprocess.hierarchy(testList);
+		double errorCount = 0;
+		for(int i=0; i<testList.size(); i++) {
+			Record record = testList.get(i);	
+			String label = dt.testRecord(record, root);
+//			System.out.println("第" + i + "个测试数据： age = " + record.getAge() + "    label = " + label);
+			if(!(record.getLabel()).equals(label)) {
+				errorCount++;
+			}
+		}
+		if(errorCount != 0) {
+			errorRate = errorCount / (testList.size()+trainList.size());
+		}
+		long endMili=System.currentTimeMillis();// 当前时间对应的毫秒数
+		System.out.println("总耗时为："+(endMili-startMili)+"毫秒");
+		System.out.println("the errorRate by Decision Tree is : " + errorRate);
+		return errorRate;
+	}
 	
 	public String testRecord(Record record, TreeNode node) {
 		String label = "no";

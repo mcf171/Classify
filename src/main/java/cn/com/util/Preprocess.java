@@ -17,6 +17,9 @@ public class Preprocess {
 			Record record = datas.get(i);
 			int age = record.getAge();
 			double duration = record.getDuration();
+			double campaign  = record.getCampaign();
+			double pdays = record.getPdays();
+			double euribor3m = record.getEuribor3m();
 			
 			if(age < 0){
 				record.setAge(0);
@@ -71,7 +74,54 @@ public class Preprocess {
 			}else{
 				record.setDuration(13);
 			}
+			
+			if(campaign  < 0) {
+				record.setCampaign(0);
+			}else if(campaign  >=0 || campaign  < 60) {
+				record.setCampaign ((int)campaign/5 + 1);
+			}else{
+				record.setCampaign(13);
+			}
+			
+			if(pdays  < 0) {
+				record.setPdays(0);
+			}else if(pdays  >=0 || pdays  < 30) {
+				record.setPdays ((int)pdays/3 + 1);
+			}else{
+				record.setPdays(12);
+			}
+			
+			if(euribor3m < 0) {
+				record.setEuribor3m(0);
+			}else if(campaign  >=0 || campaign  < 0.5) {
+				record.setEuribor3m (1);
+			}else if(duration >0.5 || duration < 1) {
+				record.setEuribor3m(2);
+			}else if(duration >=1 || duration < 1.5) {
+				record.setEuribor3m(3);
+			}else if(duration >=1.5 || duration < 2.0) {
+				record.setEuribor3m(4);
+			}else if(duration >=2.0 || duration < 2.5) {
+				record.setEuribor3m(5);
+			}else if(duration >=2.5 || duration < 3.0) {
+				record.setEuribor3m(6);
+			}else if(duration >=3.0 || duration < 3.5) {
+				record.setEuribor3m(7);
+			}else if(duration >=3.5 || duration < 4.0) {
+				record.setEuribor3m(8);
+			}else if(duration >=4.0 || duration < 4.5) {
+				record.setEuribor3m(9);
+			}else if(duration >=4.5 || duration < 5.0) {
+				record.setEuribor3m(10);
+			}else if(duration >=5.0 || duration < 5.5) {
+				record.setEuribor3m(11);
+			}else{
+				record.setEuribor3m(12);
+			}
+			
 		}
+		
+		
 	}
 	
 	public ArrayList<String> attrChoice(ArrayList<Record> datas) {
@@ -100,7 +150,7 @@ public class Preprocess {
 		Gain gain = new Gain(datas,tempList);
 		
 		//----------------------查看各属性的数值范围-----------------------------------------
-		/*ArrayList arr = gain.getValuesOfAttr(datas, "duration");
+	/*	ArrayList arr = gain.getValuesOfAttr(datas, "nrEmployed");
 		Collections.sort(arr);
 		
 		Collections.sort(arr, new Comparator() {
@@ -110,7 +160,10 @@ public class Preprocess {
 		      }
 		    });
 		for(int i=0 ; i<arr.size(); i++) {
-			System.out.println(arr.get(i));
+			System.out.print(arr.get(i) + "  ");
+			if( i % 10 == 0){
+				System.out.println();
+			}
 		}*/
 		//---------------------------------------------------------------------------
 		
@@ -133,7 +186,6 @@ public class Preprocess {
 		
 		for (int i = 0; i < infoIds.size(); i++) {
 		    String id = infoIds.get(i).getKey();
-//		    System.out.println(id);
 		}
 		
 		Collections.sort(infoIds, new Comparator<Map.Entry<String, Double>>() {   
@@ -147,16 +199,25 @@ public class Preprocess {
 		        }
 		    }
 		});
-//        System.out.println();
 		for (int i = 0; i < 10; i++) {
 		    String id = infoIds.get(i).getKey();
-//		    System.out.println(id);
 		    attrList.add(id);
 		}
 		//--------------------------------------------------------------------------------------
 		
 		return attrList;
 	}
+	
+	/*public static void main(String[] args) {
+		List<Record> lists = TextUtil.getAllInformation("bank-additional-full.csv");
+		Preprocess p =new Preprocess();
+		p.hierarchy((ArrayList)lists);
+		ArrayList t = new ArrayList();
+		t = p.attrChoice((ArrayList)lists);
+		for(int i=0; i<56; i++) {
+			System.out.println(i + ":  " + i/5);
+		}
+	}*/
 	
 	
 }

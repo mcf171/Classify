@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.com.model.Record;
+import cn.com.model.TreeNode;
+import cn.com.service.DecisionTree;
 import cn.com.service.NaiveBayesian;
+import cn.com.util.Preprocess;
 import cn.com.util.TextUtil;
 
 public class KFoldCrossValidation {
@@ -14,7 +17,8 @@ public class KFoldCrossValidation {
 		
 		int step = 4118;
 		double erroRate = 0;
-		List<Record> allRecord = TextUtil.getAllInformation("bank-additional-full.csv");
+		double errorRateDT = 0.0;
+		ArrayList<Record> allRecord = (ArrayList<Record>) TextUtil.getAllInformation("bank-additional-full.csv");
 		for(int i = 0 ; i < 10 ; i ++){
 			
 			System.out.println("iterator time is :" + (i+1));
@@ -26,8 +30,14 @@ public class KFoldCrossValidation {
 			
 			erroRate += NaiveBayesian.NaiveBayesianPredicte(trainList, testList);
 			
+//			errorRateDT += DecisionTree.DecisionTreePredicte((ArrayList)trainList, (ArrayList)testList);
+			
 		}
 		erroRate /=10;
+//		errorRateDT /=10;
 		System.out.println("total errorRate is : " + erroRate);
+//		System.out.println("total errorRate by DecisioinTree is : " + errorRateDT);
+		
+		
 	}
 }
