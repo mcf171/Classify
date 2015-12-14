@@ -21,6 +21,7 @@ public class TextUtil {
 	        String line="";
 	        String[] arrs=null;
 	        line = br.readLine();
+	        int divorced = 0 , married = 0, single = 0,unknown=0;
 	        while ((line=br.readLine())!=null) {
 	        	line = line.replace("\"", "");
 	            arrs=line.split(";");
@@ -34,6 +35,16 @@ public class TextUtil {
 	            record.setAge(Integer.parseInt(arrs[0]));
 	            record.setJob(arrs[1]);
 	            record.setMarital(arrs[2]);
+	            if(arrs[2].equals("divorced"))
+	            	divorced ++;
+	            if(arrs[2].equals("married"))
+	            	married ++;
+	            if(arrs[2].equals("single"))
+	            	single ++;
+	            if(arrs[2].equals("unknown")){
+	            	record.setMarital("married");
+	            }
+	            
 	            record.setEducation(arrs[3]);
 	            record.setDefaultCredit(arrs[4]);
 	            record.setHousing(arrs[5]);
@@ -57,8 +68,8 @@ public class TextUtil {
 	        System.out.println("dirty attribute number is :" + count);
 	        br.close();
 	        fr.close();
+	        //System.out.println(divorced + "," + married + "," + single +"," + unknown);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		int counts = 0;
@@ -133,7 +144,6 @@ public class TextUtil {
 	        br.close();
 	        fr.close();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		int counts = 0;

@@ -11,6 +11,7 @@ public class NaiveBayesian {
 	public static double NaiveBayesianPredicte(List<Record> trainList, List<Record> testList){
 		
 		double errsRate = 0;
+		int dirty = 0;
 		long startMili=System.currentTimeMillis();// 当前时间对应的毫秒数
 		
 		for(Record record : testList){
@@ -40,13 +41,18 @@ public class NaiveBayesian {
 			values[21] = record.isDirty();
 		
 			String label = calculateTheLabel(values, trainList);
-			errsRate = label.equals(record.getLabel()) ? errsRate : errsRate + 1;
+			if(!label.equals(record.getLabel())){
+				errsRate ++;
+				if(record.isDirty())
+					dirty++;
+			}
+			
 			
 			
 			
 		}
 		long endMili=System.currentTimeMillis();
-		
+		System.out.println("dirty count is :" + dirty);
 		System.out.println("总耗时为："+(endMili-startMili)+"毫秒");
 		errsRate = errsRate/(testList.size()+trainList.size());
 		System.out.println("the errorRate is : " + errsRate);
@@ -182,11 +188,19 @@ public class NaiveBayesian {
 		p_putcome_no = number_poutcome_no/numberOfNo;
 		p_contact_no = number_contact_no/numberOfNo;
 		p_marital_no = number_marital_no/numberOfNo;
+		/*
+		double p_x_yes = p_age_yes*p_campaign_yes*p_consConfIdx_yes*p_consPriceIdx_yes*p_contact_yes*p_duration_yes*p_empVarRate_yes*p_marital_yes*p_pdays_yes*p_putcome_yes;
+		double p_x_no = p_age_no*p_campaign_no*p_consConfIdx_no*p_consPriceIdx_no*p_contact_no*p_duration_no*p_empVarRate_no*p_marital_no*p_pdays_no*p_putcome_no;
+		*/
+		
 		
 		double p_x_yes = p_age_yes*p_campaign_yes*p_consConfIdx_yes*p_consPriceIdx_yes*p_contact_yes*p_duration_yes*p_empVarRate_yes*p_marital_yes*p_pdays_yes*p_putcome_yes;
 		double p_x_no = p_age_no*p_campaign_no*p_consConfIdx_no*p_consPriceIdx_no*p_contact_no*p_duration_no*p_empVarRate_no*p_marital_no*p_pdays_no*p_putcome_no;
 		
 		label = p_x_yes > p_x_no ? "yes" : "no";
+		if((Double)attributes[0] == 0)
+			label = "no";
+		
 		return label;
 	}
 	
