@@ -50,9 +50,6 @@ public class KFoldCrossValidation {
 		erroRate /=10;
 		errorRateDT /=10;
 		System.out.println("total errorRate is : " + erroRate*100 + "%");
-		System.out.println("total errorRate by DecisioinTree is : " + errorRateDT*100 + "%");
-
-		
-		
+		System.out.println("total errorRate by DecisioinTree is : " + errorRateDT*100 + "%");	
 	}
 }

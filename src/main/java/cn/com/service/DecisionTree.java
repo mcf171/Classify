@@ -35,8 +35,8 @@ public class DecisionTree {
 			errorRate = errorCount / (testList.size()+trainList.size());
 		}
 		long endMili=System.currentTimeMillis();// 当前时间对应的毫秒数
-		System.out.println("总耗时为："+(endMili-startMili)+"毫秒");
-		System.out.println("the errorRate by Decision Tree is : " + errorRate);
+//		System.out.println("总耗时为："+(endMili-startMili)+"毫秒");
+//		System.out.println("the errorRate by Decision Tree is : " + errorRate);
 		return errorRate;
 	}
 	

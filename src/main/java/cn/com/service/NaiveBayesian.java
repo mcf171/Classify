@@ -52,10 +52,10 @@ public class NaiveBayesian {
 			
 		}
 		long endMili=System.currentTimeMillis();
-		System.out.println("dirty count is :" + dirty);
-		System.out.println("总耗时为："+(endMili-startMili)+"毫秒");
+	/*	System.out.println("dirty count is :" + dirty);
+		System.out.println("总耗时为："+(endMili-startMili)+"毫秒");*/
 		errsRate = errsRate/(testList.size()+trainList.size());
-		System.out.println("the errorRate is : " + errsRate);
+//		System.out.println("the errorRate is : " + errsRate);
 		return errsRate;
 	}
 	
